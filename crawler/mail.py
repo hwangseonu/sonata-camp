@@ -10,10 +10,7 @@ class MailService:
         else:
             self.driver = webdriver.Chrome('./chromedriver')
 
-    """
-    web driver 를 사용하여 네이버에 로그인 한다
-    """
-
+    # webdriver 를 이용하여 네이버에 로그인합니다.
     def login(self, un, pw):
         try:
             self.driver.get('https://nid.naver.com/nidlogin.login')
@@ -25,11 +22,9 @@ class MailService:
         except:
             return False
 
-    """
-    로그인 된 유저의 메일을 가져옵니다.
-    """
-
+    # 로그인 된 유저의 메일 중 정규표현식 '\d+ .+'를 만족하는 메일들을 가져옵니다.
     def get_all_mail(self):
+        print('get all mains...')  # debug
         self.driver.get('http://mail.naver.com')
         soup = BeautifulSoup(self.driver.page_source, 'html.parser')
         mails = soup.select('.mTitle')
@@ -40,14 +35,12 @@ class MailService:
             mail = self.get_mail(url)
             p = re.compile('\d+ .+')
             if p.match(mail.title):
+                print('get', mail.title)  # debug
                 result.append(mail)
 
         return result
 
-    """
-    url 에서 메의의 정보를 파싱하여 객체로 반환합니다.
-    """
-
+    # url 에서 메일의 정보를 파싱하여 객체로 반환합니다.
     def get_mail(self, url):
         url = 'http://mail.naver.com' + url
         self.driver.get(url)
@@ -69,6 +62,7 @@ class MailService:
         return Mail(sender, title, content, attached, url)
 
 
+# 메일의 정보를 가지고 있는 객체입니다.
 class Mail:
     def __init__(self, sender, title, content, attached, url):
         self.sender = sender
