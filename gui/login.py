@@ -25,7 +25,14 @@ def login_page(service):
 # 로그인이 완료되면 창을 닫습니다.
 def login_btn_click(main, service, input_id, input_pw):
     def check():
-        service.login(input_id.get(), input_pw.get())
+        if not service.login(input_id.get(), input_pw.get()):
+            fail = Tk()
+            canvas = Canvas(fail, width=200, height=100)
+            canvas.pack()
+            canvas.winfo_toplevel().title('failed login')
+            canvas.create_text(100, 50, text='로그인에 실패하였습니다.')
+            main.destroy()
+            fail.mainloop()
         main.destroy()
         print('login successfully!')  # debug
         print('close login window')  # debug

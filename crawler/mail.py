@@ -18,27 +18,32 @@ class MailService:
             self.driver.find_element_by_id('pw').send_keys(pw)
             self.driver.find_element_by_id('label_login_chk').click()
             self.driver.find_element_by_class_name('btn_global').click()
+
+            if self.driver.page_source.find('아이디 또는 비밀번호를 다시 확인하세요.') is not -1:
+                return False
             return True
         except:
             return False
 
     # 로그인 된 유저의 메일 중 정규표현식 '\d+ .+'를 만족하는 메일들을 가져옵니다.
     def get_all_mail(self):
-        print('get all mains...')  # debug
-        self.driver.get('http://mail.naver.com')
-        soup = BeautifulSoup(self.driver.page_source, 'html.parser')
-        mails = soup.select('.mTitle')
-        result = []
+        try:
+            print('get all mains...')  # debug
+            self.driver.get('http://mail.naver.com')
+            soup = BeautifulSoup(self.driver.page_source, 'html.parser')
+            mails = soup.select('.mTitle')
+            result = []
 
-        for m in mails:
-            url = m.find('a', {'class': '_d2(mcDragndrop|html5DragStart)'}).get('href')
-            mail = self.get_mail(url)
-            p = re.compile('\d+ .+')
-            if p.match(mail.title):
-                print('get', mail.title)  # debug
-                result.append(mail)
-
-        return result
+            for m in mails:
+                url = m.find('a', {'class': '_d2(mcDragndrop|html5DragStart)'}).get('href')
+                mail = self.get_mail(url)
+                p = re.compile('\d+ .+')
+                if p.match(mail.title):
+                    print('get', mail.title)  # debug
+                    result.append(mail)
+            return result
+        except:
+            return False
 
     # url 에서 메일의 정보를 파싱하여 객체로 반환합니다.
     def get_mail(self, url):

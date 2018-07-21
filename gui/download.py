@@ -20,6 +20,16 @@ def download_all(service, main):
     def download():
         print('start download...')  # debug
         mails = service.get_all_mail()
+
+        if not mails:
+            fail = Tk()
+            canvas = Canvas(fail, width=200, height=100)
+            canvas.pack()
+            canvas.winfo_toplevel().title('need login')
+            canvas.create_text(100, 50, text='로그인을 먼저 해주세요')
+            main.destroy()
+            fail.mainloop()
+
         for m in mails:
             for a in m.attached:
                 service.driver.get(a)
