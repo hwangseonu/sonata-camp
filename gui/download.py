@@ -25,4 +25,5 @@ def download_all(service, main):
                 service.driver.get(a)
         main.destroy()
         print('end download!')  # debug
+        print('close download window')  # debug
     return download

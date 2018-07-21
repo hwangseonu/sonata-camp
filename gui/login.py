@@ -28,4 +28,5 @@ def login_btn_click(main, service, input_id, input_pw):
         service.login(input_id.get(), input_pw.get())
         main.destroy()
         print('login successfully!')  # debug
+        print('close login window')  # debug
     return check
