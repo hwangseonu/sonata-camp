@@ -22,11 +22,13 @@ def mail_list_page(service):
 
     # enumerate 는 index 와 함께 순회할 수 있도록 해줍니다.
     for i, mail in enumerate(mails):
-        if len(mail.content) > 30:
+        # 내용이 10자 이상이면 축약한다.
+        if len(mail.content) > 10:
             content = mail.content[:30] + '...'
         else:
             content = mail.content
-        btns.append(Button(canvas, text=f'{mail.title}: {content}    -->    클릭하면 첨부파일을 다운로드합니다.',
+
+        btns.append(Button(canvas, text=f'{mail.title}: {content}    -->    클릭 시 다운로드.',
                            command=btn_mail_click(service, mail)))  # 학번 이름 : 내용 일부... (예시. 1101 홍길동 : 과제제출했습니다....)
         btns[i].grid(row=i, column=0)   # 버튼의 grid 를 설정합니다. 보기좋게 배치하기 위함입니다.
         btns[i].configure(width=100)    # 버튼의 크기를 고정합니다.
