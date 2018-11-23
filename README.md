@@ -1,5 +1,5 @@
 # Sonata Camp
-과제: BeautifulSoup와 tkinter를 배워 이를 이용한 어플리케이션을 만들자.
+과제: BeautifulSoup와 tkinter를 배워 이를 이용한 어플리케이션을 만들자.  
 naver메일을 크롤링하여 (학번 이름)의 규칙을 가진 이메일들만 모아 과제를 쉽게 다운로드 할 수 있도록 만들자
 
 ## BeautifulSoup
