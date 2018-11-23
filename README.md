@@ -9,7 +9,7 @@ naver메일을 크롤링하여 (학번 이름)의 규칙을 가진 이메일들�
 gui환경을 만들 수 있는 python 라이브러리이다.
 
 ## Selenium
-webdriver를 다루어서 web broweser 를 조작할 수 있다.  
+webdriver를 다루어서 web browser 를 조작할 수 있다.  
 naver의 경우 프론트엔드에서 로그인을 처리하기 때문에 requests로는 구현이 힘든 부분이 있어 사용하였다.
 
 ## re
