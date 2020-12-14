@@ -3,7 +3,7 @@
 naver메일을 크롤링하여 (학번 이름)의 규칙을 가진 이메일들만 모아 과제를 쉽게 다운로드 할 수 있도록 만들자
 
 ## BeautifulSoup
-크롤링을 도와주는 python 라이브러리로 대부분 requests 또는 urllib와 함꼐 사용한다.
+크롤링을 도와주는 python 라이브러리로 대부분 requests 또는 urllib와 함께 사용한다.
 
 ## tkinter
 gui환경을 만들 수 있는 python 라이브러리이다.
