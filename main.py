@@ -1,8 +1,26 @@
-from crawler.mail import MailService
-from gui.main import main_page
+from provider.dummy import DummyMailProvider
+from provider.naver import NaverMailProvider
+from gui.login import LoginPage
+from tkinter import messagebox
 
-# 메일을 크롤링하기 위한 객체입니다. 하나의 객체만 사용되기 때문에 다른 곳에 매개변수로 전달합니다.
-print('start You Must Submit')
-service = MailService('chrome')
-main_page(service)
-print('end')
+from gui.main import MainPage
+
+
+def on_login(username, password):
+    global provider
+    try:
+        provider.login(username, password)
+    except RuntimeError as err:
+        messagebox.showinfo('Error', err)
+        exit(-1)
+
+
+if __name__ == '__main__':
+    # provider = NaverMailProvider()
+    # login = LoginPage(on_login)
+    # login.mainloop()
+
+    provider = DummyMailProvider()
+
+    main = MainPage(provider)
+    main.mainloop()
