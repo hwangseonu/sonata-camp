@@ -1,4 +1,3 @@
-from provider.dummy import DummyMailProvider
 from provider.naver import NaverMailProvider
 from gui.login import LoginPage
 from tkinter import messagebox
@@ -16,11 +15,9 @@ def on_login(username, password):
 
 
 if __name__ == '__main__':
-    # provider = NaverMailProvider()
-    # login = LoginPage(on_login)
-    # login.mainloop()
-
-    provider = DummyMailProvider()
+    provider = NaverMailProvider()
+    login = LoginPage(on_login)
+    login.mainloop()
 
     main = MainPage(provider)
     main.mainloop()
